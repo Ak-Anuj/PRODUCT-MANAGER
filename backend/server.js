@@ -13,11 +13,26 @@ const app = express()
 const PORT = process.env.PORT || 8000
 
 app.use(express.json())
-app.use(cors({
-    origin:'http://localhost:5173',
 
-    credentials:true
-}))
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://product-manager-green-six.vercel.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+
 
 app.use('/auth', authRoute)
 app.use('/user', userRoute)
