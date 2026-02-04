@@ -3,21 +3,26 @@ import 'dotenv/config'
 import connectDB from "./database/db.js"
 import userRoute from "./routes/userRoute.js"
 import authRoute from "./routes/authRoute.js"
+import productRoute from "./routes/productRoutes.js"
+
 import cors from 'cors'
 import "./config/passport.js"
 
 const app = express()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8000
 
 app.use(express.json())
 app.use(cors({
     origin:'http://localhost:5173',
+
     credentials:true
 }))
 
 app.use('/auth', authRoute)
 app.use('/user', userRoute)
+app.use("/product", productRoute)
+
 
 // http://localhost:8000/user/register
 

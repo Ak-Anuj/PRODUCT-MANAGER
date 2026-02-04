@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+const API_URL = import.meta.env.VITE_API_URL
 
 const Verify = () => {
     const {token} = useParams()
@@ -10,7 +11,7 @@ const Verify = () => {
     useEffect(()=>{
         const verifyEmail = async()=>{
             try {
-                const res = await axios.post(`http://localhost:8000/user/verify`, {},{
+                const res = await axios.post(`${API_URL}/user/verify`, {},{
                     headers:{
                         Authorization: `Bearer ${token}`
                     }

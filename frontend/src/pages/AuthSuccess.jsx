@@ -2,6 +2,7 @@ import { getData } from '@/context/userContext'
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+const API_URL = import.meta.env.VITE_API_URL
 
 const AuthSuccess = () => {
     const { setUser } = getData()
@@ -17,7 +18,7 @@ const AuthSuccess = () => {
             if (accessToken) {
                 localStorage.setItem("accessToken", accessToken)
                 try {
-                    const res = await axios.get("http://localhost:8000/auth/me", {
+                    const res = await axios.get(`${API_URL}/auth/me`, {
                         headers: {
                             Authorization: `Bearer ${accessToken}`
                         }
