@@ -33,7 +33,7 @@ app.use(cors({
 }));
 
 
-
+app.set("trust proxy", 1);
 app.use('/auth', authRoute)
 app.use('/user', userRoute)
 app.use("/product", productRoute)
