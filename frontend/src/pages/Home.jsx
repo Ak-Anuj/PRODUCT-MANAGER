@@ -3,6 +3,7 @@ import axios from "axios"
 import Hero from "@/components/Hero"
 import ProductCard from "@/components/ProductCard"
 import AddProductModal from "@/components/AddProductModal"
+const API_URL = import.meta.env.VITE_API_URL
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("published")
@@ -10,10 +11,10 @@ const Home = () => {
   const [openModal, setOpenModal] = useState(false)
   const [editProduct, setEditProduct] = useState(null)
 
-  // ✅ FETCH PRODUCTS
+  //  FETCH PRODUCTS
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/product")
+      const res = await axios.get(`${API_URL}/product`)
       setProducts(res.data)
     } catch (error) {
       console.error(error)
@@ -24,33 +25,33 @@ const Home = () => {
     fetchProducts()
   }, [])
 
-  // ✅ TOGGLE PUBLISH
+  //  TOGGLE PUBLISH
   const handleTogglePublish = async (id) => {
     try {
-      await axios.patch(`http://localhost:8000/product/${id}/publish`)
+      await axios.patch(`${API_URL}/product/${id}/publish`)
       fetchProducts()
     } catch (error) {
       console.error(error)
     }
   }
 
-  // ✅ DELETE
+  //  DELETE
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/product/${id}`)
+      await axios.delete(`${API_URL}/product/${id}`)
       fetchProducts()
     } catch (error) {
       console.error(error)
     }
   }
 
-  // ✅ EDIT
+  //  EDIT
   const handleEdit = (product) => {
     setEditProduct(product)
     setOpenModal(true)
   }
 
-  // ✅ FILTER BASED ON TAB
+  //  FILTER BASED ON TAB
   const filteredProducts = products.filter((product) =>
     activeTab === "published"
       ? product.isPublished
@@ -80,7 +81,7 @@ const Home = () => {
         )}
       </div>
 
-      {/* ✅ SAME MODAL AS PRODUCTS PAGE */}
+      {/*  SAME MODAL AS PRODUCTS PAGE */}
       <AddProductModal
         open={openModal}
         onClose={() => {
