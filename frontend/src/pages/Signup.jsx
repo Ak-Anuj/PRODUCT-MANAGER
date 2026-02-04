@@ -82,7 +82,7 @@ const Signup = () => {
                 <div className="w-full max-w-md sm:max-w-lg">
 
                     <h2 className="text-3xl font-bold text-[#0B2A78] mb-8">
-                        Create your Productr Account
+                        Create your Product Account
                     </h2>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
