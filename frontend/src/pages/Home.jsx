@@ -3,6 +3,7 @@ import axios from "axios"
 import Hero from "@/components/Hero"
 import ProductCard from "@/components/ProductCard"
 import AddProductModal from "@/components/AddProductModal"
+
 const API_URL = import.meta.env.VITE_API_URL
 
 const Home = () => {
@@ -11,7 +12,6 @@ const Home = () => {
   const [openModal, setOpenModal] = useState(false)
   const [editProduct, setEditProduct] = useState(null)
 
-  //  FETCH PRODUCTS
   const fetchProducts = async () => {
     try {
       const res = await axios.get(`${API_URL}/product`)
@@ -25,7 +25,6 @@ const Home = () => {
     fetchProducts()
   }, [])
 
-  //  TOGGLE PUBLISH
   const handleTogglePublish = async (id) => {
     try {
       await axios.patch(`${API_URL}/product/${id}/publish`)
@@ -35,7 +34,6 @@ const Home = () => {
     }
   }
 
-  //  DELETE
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${API_URL}/product/${id}`)
@@ -45,13 +43,11 @@ const Home = () => {
     }
   }
 
-  //  EDIT
   const handleEdit = (product) => {
     setEditProduct(product)
     setOpenModal(true)
   }
 
-  //  FILTER BASED ON TAB
   const filteredProducts = products.filter((product) =>
     activeTab === "published"
       ? product.isPublished
@@ -59,11 +55,12 @@ const Home = () => {
   )
 
   return (
-    <div className="bg-gray-50 min-h-screen p-6">
+    <div className="bg-gray-50 min-h-screen px-4 sm:px-6 lg:px-10 py-6">
 
       <Hero activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+      {/* FIXED RESPONSIVE GRID */}
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 mt-6">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductCard
@@ -75,13 +72,14 @@ const Home = () => {
             />
           ))
         ) : (
-          <p className="text-gray-400 text-sm">
-            No products found.
-          </p>
+          <div className="col-span-full flex justify-center py-16">
+            <p className="text-gray-400 text-sm sm:text-base">
+              No products found.
+            </p>
+          </div>
         )}
       </div>
 
-      {/*  SAME MODAL AS PRODUCTS PAGE */}
       <AddProductModal
         open={openModal}
         onClose={() => {
