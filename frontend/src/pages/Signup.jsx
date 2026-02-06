@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import LoginImage from "../assets/loginImage.png"
+
 const API_URL = import.meta.env.VITE_API_URL
 
 const Signup = () => {
@@ -49,7 +50,6 @@ const Signup = () => {
             }
 
         } catch (error) {
-            //  Proper error handling
             const message =
                 error.response?.data?.message ||
                 "Registration failed. Please try again."
@@ -64,14 +64,14 @@ const Signup = () => {
         <div className="min-h-screen flex flex-col lg:flex-row bg-[#FAF9F6]">
 
             {/* LEFT IMAGE SECTION */}
-            <div className="hidden lg:flex w-1/2 items-center justify-center p-10">
-                <div className="relative w-[520px] h-[720px] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="hidden lg:flex lg:w-1/2 items-center justify-center px-8 xl:px-16 py-10">
+                <div className="relative w-full max-w-[520px] aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
                     <img
                         src={LoginImage}
                         alt="Product marketing visual"
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-10 left-8 text-white text-xl font-semibold leading-tight">
+                    <div className="absolute bottom-8 left-6 text-white text-lg xl:text-xl font-semibold leading-tight">
                         Uplist your <br /> product to market
                     </div>
                 </div>
@@ -79,9 +79,9 @@ const Signup = () => {
 
             {/* SIGNUP FORM */}
             <div className="w-full lg:w-1/2 flex items-center justify-center px-6 sm:px-10 py-10">
-                <div className="w-full max-w-md sm:max-w-lg">
+                <div className="w-full max-w-md sm:max-w-lg md:max-w-xl">
 
-                    <h2 className="text-3xl font-bold text-[#0B2A78] mb-8">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-[#0B2A78] mb-8">
                         Create your Product Account
                     </h2>
 
@@ -129,9 +129,11 @@ const Signup = () => {
                                     className="absolute right-3 top-1/2 -translate-y-1/2"
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
-                                    {showPassword ?
-                                        <EyeOff className="w-5 h-5 text-gray-500" /> :
-                                        <Eye className="w-5 h-5 text-gray-500" />}
+                                    {showPassword ? (
+                                        <EyeOff className="w-5 h-5 text-gray-500" />
+                                    ) : (
+                                        <Eye className="w-5 h-5 text-gray-500" />
+                                    )}
                                 </button>
                             </div>
                         </div>
@@ -152,7 +154,7 @@ const Signup = () => {
                     </form>
 
                     {/* LOGIN BOX */}
-                    <div className="mt-12 border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+                    <div className="mt-10 sm:mt-12 border border-gray-200 rounded-xl p-6 text-center shadow-sm">
                         <p className="text-gray-600">
                             Already have a Product Account?
                         </p>
