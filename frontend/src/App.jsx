@@ -41,6 +41,9 @@ const router = createBrowserRouter([
   // Auth Pages
   { path: "/signup", element: <Signup /> },
   {path: "/profile", element: <Profile /> },
+ 
+  { path: "/auth-success", element: <AuthSuccess /> },
+ 
 
   { path: "/login", element: <Login /> },
   
