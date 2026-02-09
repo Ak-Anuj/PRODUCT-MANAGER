@@ -6,11 +6,9 @@ import Products from "./pages/Products"
 
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
-import VerifyEmail from "./pages/VerifyEmail"
+
 import Verify from "./pages/Verify"
-import ForgotPassword from "./pages/ForgotPassword"
-import VerifyOTP from "./pages/VerifyOTP"
-import ChangePassword from "./pages/ChangePassword"
+
 import AuthSuccess from "./pages/AuthSuccess"
 import Profile from "./pages/Profile"
 
