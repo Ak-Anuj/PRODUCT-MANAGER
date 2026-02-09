@@ -67,7 +67,7 @@ const AddProductModal = ({ open, onClose, editData , onSuccess }) => {
 
       if (editData) {
         await axios.put(
-          `${API_URL}/${editData._id}`,
+           `${API_URL}/product/${editData._id}`,
           data
         )
       } else {
