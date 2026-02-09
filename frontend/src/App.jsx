@@ -43,12 +43,7 @@ const router = createBrowserRouter([
   {path: "/profile", element: <Profile /> },
 
   { path: "/login", element: <Login /> },
-  { path: "/verify", element: <VerifyEmail /> },
-  { path: "/verify/:token", element: <Verify /> },
-  { path: "/auth-success", element: <AuthSuccess /> },
-  { path: "/forgot-password", element: <ForgotPassword /> },
-  { path: "/verify-otp/:email", element: <VerifyOTP /> },
-  { path: "/change-password/:email", element: <ChangePassword /> }
+  
 ])
 
 const App = () => {
